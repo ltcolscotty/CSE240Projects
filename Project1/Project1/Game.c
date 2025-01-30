@@ -3,8 +3,22 @@
 #include <stdbool.h>
 #include <string.h>
 
-// Checks cleans input for handling later. optionCount is the size of the array or number of options
+/* game.c
+* Rock paper scissors assignment for A3 of CSE 240
+* 
+* Aidan Yung
+* 1/30/2025
+*/
+
 bool verifyInput(char *stringItems[], int optionCount, char *input) {
+	/*
+	* Checks cleans input for handling later. optionCount is the size of the array or number of options
+	* @param stringItems[] - Possible valid answers
+	* @param optionCount - number of options or the length of stringItems
+	* @param input - value of input to clean
+	* 
+	* @return boolean - whether input is valid or not
+	*/
 	for (int i = 0; i < optionCount; i++) {
 		if (strcmp(stringItems[i], input) == 0) {
 			return true;
@@ -13,8 +27,12 @@ bool verifyInput(char *stringItems[], int optionCount, char *input) {
 	return false;
 }
 
-// Dialogue for player and returns player move after ensuring a safe input
+
 char getPlayerMove() {
+	/*
+	* Dialogue for player and returns player move after ensuring a safe input
+	* @return char - player input
+	*/
 	char playerChoice[30];
 	bool validChoice = false;
 	char* playerOptions[] = { "r", "p", "s" };
@@ -30,8 +48,12 @@ char getPlayerMove() {
 	return playerChoice[0];
 }
 
-// Generates computer move and returns it
+
 char getComputerMove() {
+	/*
+	* Generates computer move and returns it
+	* @return char - character that the computer generates
+	*/
 	int cpuVal = rand() % 3 + 1;
 	if (cpuVal == 1) {
 		return 'r';
@@ -44,8 +66,13 @@ char getComputerMove() {
 	}
 }
 
-// Compares inputs and returns the winner
+
 void roundWinner(char playerMove, char computerMove) {
+	/*
+	* Compares inputs and returns the winner'
+	* @param playerMove - character that the player inputs
+	* @param computerMove - character that the computer inputs
+	*/
 	if (playerMove == computerMove) {
 		printf("It was a tie!\n");
 	}
@@ -60,8 +87,11 @@ void roundWinner(char playerMove, char computerMove) {
 	}
 }
 
-// Packages the entire round into one function
+
 void playRound() {
+	/*
+	* Packages the entire round into one function
+	*/
 	char computerMove = getComputerMove();
 	char playerMove = getPlayerMove();
 
@@ -72,8 +102,12 @@ void playRound() {
 	roundWinner(playerMove, computerMove);
 }
 
-// Takes input and action for quit dialogue
+
 bool determineContinue() {
+	/*
+	* Takes input and action for quit dialogue
+	* @return boolean - whether to continue or not
+	*/
 	char inputChar[30];
 	printf("Press 'q' to quit, press any key to continue:\n");
 	scanf("%s", inputChar);
