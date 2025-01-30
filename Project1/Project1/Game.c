@@ -95,6 +95,6 @@ int main() {
 		continueGame = determineContinue();
 	}
 
-	printf("Goodbye!");
+	printf("Goodbye!\n");
 	return 0;
 }
