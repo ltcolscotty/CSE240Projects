@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240\\Project1\\",
+  "WorkspaceRootPath": "C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Project1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FA620CFD-1E33-4434-AF68-B57DA6B2C9E0}|Project1\\Project1.vcxproj|C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240\\Project1\\Project1\\Game.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{FA620CFD-1E33-4434-AF68-B57DA6B2C9E0}|Project1\\Project1.vcxproj|C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Project1\\Project1\\Game.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{FA620CFD-1E33-4434-AF68-B57DA6B2C9E0}|Project1\\Project1.vcxproj|solutionrelative:Project1\\Game.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -20,11 +20,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Game.c",
-              "DocumentMoniker": "C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240\\Project1\\Project1\\Game.c",
+              "DocumentMoniker": "C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Project1\\Project1\\Game.c",
               "RelativeDocumentMoniker": "Project1\\Game.c",
-              "ToolTip": "C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240\\Project1\\Project1\\Game.c",
+              "ToolTip": "C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Project1\\Project1\\Game.c",
               "RelativeToolTip": "Project1\\Game.c",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAAAGwAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-01-29T21:44:02.379Z",
               "EditorCaption": ""

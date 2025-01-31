@@ -39,7 +39,7 @@ char getPlayerMove() {
 
 	while (!validChoice) {
 		printf("Input your play ('r' for 'rock', 'p' for 'paper', 's' for 'scissors'): \n");
-		scanf("%s", playerChoice);
+		scanf("%29s", playerChoice);
 		validChoice = verifyInput(playerOptions, 3, playerChoice);
 		if (!validChoice) {
 			printf("Invalid choice, please try again!\n");
@@ -110,7 +110,7 @@ bool determineContinue() {
 	*/
 	char inputChar[30];
 	printf("Press 'q' to quit, press any key to continue:\n");
-	scanf("%s", inputChar);
+	scanf("%29s", inputChar);
 
 	// Returns true for anything that isn't "q"
 	return (strcmp(inputChar, "q") != 0);
