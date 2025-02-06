@@ -13,6 +13,35 @@
 
 #include <stdio.h>
 
+#define NUM_ROWS = 5
+#define NUM_COLS = 5
+
+//use strtok
+int GetInitialState(int init_state[])
+{
+
+}
+
+void SetInitialState(char board[][NUM_COLS], int init_state[], int num_alive)
+{
+
+}
+
+void PrintBoard(char board[][NUM_COLS])
+{
+
+}
+
+int CountLiveNeighbors(char board[][NUM_COLS], int r, int c)
+{
+
+}
+
+void PlayGameOfLife()
+{
+
+}
+
 int main()
 {
 	printf("hi");
