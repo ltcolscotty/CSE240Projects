@@ -32,6 +32,12 @@ void PrintBoard(char board[][NUM_COLS])
 
 }
 
+// Produce a second 2d array then replace first array memory with it
+void NextGeneration(char board1[][NUM_COLS])
+{
+
+}
+
 int CountLiveNeighbors(char board[][NUM_COLS], int r, int c)
 {
 
