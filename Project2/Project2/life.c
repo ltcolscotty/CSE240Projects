@@ -118,8 +118,8 @@ int CountLiveNeighbors(char board[][NUM_COLS], int r, int c)
 			if ((r + dr >= 0) &&
 				(r + dr < NUM_ROWS) &&
 				(c + dc >= 0) &&
-				(c + dc < NUM_COLS)) &&
-				((dr == 0) && (dc == 0))
+				(c + dc < NUM_COLS) &&
+				((dr == 0) && (dc == 0)))
 			{
 				if (board[r + dr][c + dc] == 'o')
 				{
