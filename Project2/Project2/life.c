@@ -80,8 +80,12 @@ void SetInitialState(char board[][NUM_COLS], int init_state[], int num_alive)
 void PrintBoard(char board[][NUM_COLS])
 {
 	for (int r = 0; r < NUM_ROWS; r++)
+	{
 		for (int c = 0; c < NUM_COLS; c++)
+		{
 			printf("%s", board[r][c]);
+		}
+	}
 }
 
 // Produce a second 2d array then replace first array memory with it
