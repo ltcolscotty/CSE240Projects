@@ -47,7 +47,7 @@ int GetInitialState(int init_state[])
 	int validTokenCount = 0;
 	char inputStr[30];
 	printf("Input your start configuration: \n");
-	scanf(" %29s", &inputStr);
+	scanf(" %29s", inputStr);
 
 	char* token;
 
@@ -95,8 +95,9 @@ void PrintBoard(char board[][NUM_COLS])
 	{
 		for (int c = 0; c < NUM_COLS; c++)
 		{
-			printf("%s", board[r][c]);
+			printf("%c", board[r][c]);
 		}
+		printf("\n");
 	}
 }
 
@@ -142,11 +143,7 @@ int main()
 	int count = GetInitialState(initialState);
 	SetInitialState(board, initialState, count);
 
-	// testing call
-	for (int i = 0; i < (count); i++)
-	{
-		printf("%d\n",initialState[i]);
-	}
+	PrintBoard(board);
 
 	return 0;
 }
