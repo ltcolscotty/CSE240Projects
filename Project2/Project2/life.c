@@ -74,7 +74,19 @@ int GetInitialState(int init_state[])
 
 void SetInitialState(char board[][NUM_COLS], int init_state[], int num_alive)
 {
+	for (int r = 0; r < NUM_ROWS; r++)
+	{
+		for (int c = 0; c < NUM_COLS; c++)
+		{
+			board[r][c] = DEAD_CHAR;
+		}
+	}
 
+	// secondary pass to set alive
+	for (int i = 0; i < num_alive; i++)
+	{
+		board[init_state[i] / NUM_COLS][init_state[i] % NUM_COLS] = ALIVE_CHAR;
+	}
 }
 
 void PrintBoard(char board[][NUM_COLS])
