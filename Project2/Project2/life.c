@@ -89,24 +89,6 @@ void SetInitialState(char board[][NUM_COLS], int init_state[], int num_alive)
 	}
 }
 
-void PrintBoard(char board[][NUM_COLS])
-{
-	for (int r = 0; r < NUM_ROWS; r++)
-	{
-		for (int c = 0; c < NUM_COLS; c++)
-		{
-			printf("%c", board[r][c]);
-		}
-		printf("\n");
-	}
-}
-
-// Produce a second 2d array then replace first array memory with it
-void NextGeneration(char board[][NUM_COLS])
-{
-
-}
-
 int CountLiveNeighbors(char board[][NUM_COLS], int r, int c)
 {
 	int aliveNeighborCt = 0;
@@ -131,6 +113,36 @@ int CountLiveNeighbors(char board[][NUM_COLS], int r, int c)
 
 	return aliveNeighborCt;
 }
+
+void PrintBoard(char board[][NUM_COLS])
+{
+	for (int r = 0; r < NUM_ROWS; r++)
+	{
+		for (int c = 0; c < NUM_COLS; c++)
+		{
+			printf("%c", board[r][c]);
+		}
+		printf("\n");
+	}
+}
+
+// Produce an initialList type array and produce a new array with it after gathering what should be alive
+void NextGeneration(char board[][NUM_COLS])
+{
+	int pos = 0;
+
+	int aliveTiles[NUM_ROWS * NUM_COLS];
+
+	for (int r = 0; r < NUM_ROWS; r++)
+	{
+		for (int c = 0; c < NUM_COLS; c++)
+		{
+			int count = CountLiveNeighbors(board, r, c);
+		}
+	}
+
+}
+
 
 void PlayGameOfLife()
 {
