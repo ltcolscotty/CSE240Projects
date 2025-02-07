@@ -19,7 +19,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 #define NUM_ROWS 5
 #define NUM_COLS 5
@@ -27,18 +26,6 @@
 #define ALIVE_CHAR 'o'
 #define GENERATIONS 7
 #define TOKEN_DELIM ","
-
-bool isValidInteger(char* token)
-{
-	// Check if the token contains only digits
-	for (char* c = token; *c != '\0'; c++) {
-		if (*c < '0' || *c > '9') {
-			return false;
-		}
-	}
-
-	return true;
-}
 
 
 // Out of range numbers will be discarded
