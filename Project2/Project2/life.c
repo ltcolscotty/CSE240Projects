@@ -13,7 +13,6 @@
 * always use previous generation to produce new generation, eg. use two arrays, and compute new array based on old array
 * 
 * Dead cells will be represented with a 'x', and alive characters will be represented with a 'o' when printed out
-* The underlying board will be using a 1 and 0 state for alive and dead, respectively
 * 
 */
 
@@ -29,11 +28,20 @@
 #define GENERATIONS 7
 #define TOKEN_DELIM ","
 
+bool isValidInteger(char* token)
+{
+	// Check if the token contains only digits
+	for (char* c = token; *c != '\0'; c++) {
+		if (*c < '0' || *c > '9') {
+			return false;
+		}
+	}
+
+	return true;
+}
 
 
-// use strtok
-// Will do its best to translate inputs into valid inputs
-// Out of range numbers will be discarded and characters will be casted to ints
+// Out of range numbers will be discarded
 int GetInitialState(int init_state[])
 {
 	int validTokenCount = 0;
@@ -64,23 +72,25 @@ int GetInitialState(int init_state[])
 	return validTokenCount;
 }
 
-void SetInitialState(int board[][NUM_COLS], int init_state[], int num_alive)
+void SetInitialState(char board[][NUM_COLS], int init_state[], int num_alive)
 {
 
 }
 
-void PrintBoard(int board[][NUM_COLS])
+void PrintBoard(char board[][NUM_COLS])
 {
-
+	for (int r = 0; r < NUM_ROWS; r++)
+		for (int c = 0; c < NUM_COLS; c++)
+			printf("%s", board[r][c]);
 }
 
 // Produce a second 2d array then replace first array memory with it
-void NextGeneration(int board1[][NUM_COLS])
+void NextGeneration(char board[][NUM_COLS])
 {
 
 }
 
-int CountLiveNeighbors(int board[][NUM_COLS], int r, int c)
+int CountLiveNeighbors(char board[][NUM_COLS], int r, int c)
 {
 	int aliveNeighborCt = 0;
 
@@ -95,7 +105,7 @@ void PlayGameOfLife()
 
 int main()
 {
-	int board[NUM_ROWS][NUM_COLS];
+	char board[NUM_ROWS][NUM_COLS];
 	int initialState[NUM_ROWS * NUM_COLS];
 	int count = GetInitialState(initialState);
 
