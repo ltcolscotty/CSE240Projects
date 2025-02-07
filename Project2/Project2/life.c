@@ -88,9 +88,9 @@ int CountLiveNeighbors(char board[][NUM_COLS], int r, int c)
 				(r + dr < NUM_ROWS) &&
 				(c + dc >= 0) &&
 				(c + dc < NUM_COLS) &&
-				((dr == 0) && (dc == 0)))
+				!((dr == 0) && (dc == 0)))
 			{
-				if (board[r + dr][c + dc] == 'o')
+				if (board[r + dr][c + dc] == ALIVE_CHAR)
 				{
 					aliveNeighborCt++;
 				}
@@ -125,9 +125,16 @@ void NextGeneration(char board[][NUM_COLS])
 		for (int c = 0; c < NUM_COLS; c++)
 		{
 			int count = CountLiveNeighbors(board, r, c);
+			if (((board[r][c] == DEAD_CHAR) && (count == 3)) ||
+				((board[r][c] == ALIVE_CHAR) && ((count == 3) || (count == 2))))
+			{
+				aliveTiles[pos] = (r*NUM_COLS) + c;
+				pos++;
+			}
 		}
 	}
 
+	SetInitialState(board, aliveTiles, pos);
 }
 
 
