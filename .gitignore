@@ -1,5 +1,4 @@
 *.vsidx
-*.vcxproj
 x64/
 .vs/
 Project1/Project1/x64/
