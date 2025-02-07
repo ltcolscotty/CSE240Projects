@@ -143,9 +143,14 @@ void NextGeneration(char board[][NUM_COLS])
 }
 
 
-void PlayGameOfLife()
+void PlayGameOfLife(char board[][NUM_COLS])
 {
-
+	for (int i = 0; i < GENERATIONS; i++)
+	{
+		printf("Generation: %d\n", i);
+		PrintBoard(board);
+		NextGeneration(board);
+	}
 }
 
 
@@ -155,8 +160,8 @@ int main()
 	int initialState[NUM_ROWS * NUM_COLS];
 	int count = GetInitialState(initialState);
 	SetInitialState(board, initialState, count);
-
-	PrintBoard(board);
+	
+	PlayGameOfLife(board);
 
 	return 0;
 }
