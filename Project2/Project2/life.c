@@ -94,6 +94,22 @@ int CountLiveNeighbors(char board[][NUM_COLS], int r, int c)
 {
 	int aliveNeighborCt = 0;
 
+	for (int dr = -1; dr <= 1; dr++)
+	{
+		for (int dc = -1; dc <= 1; dc++)
+		{
+			if ((r + dr >= 0) &&
+				(r + dr < NUM_ROWS) &&
+				(c + dc >= 0) &&
+				(c + dc < NUM_COLS))
+			{
+				if (board[r + dr][c + dc] == 'o')
+				{
+					aliveNeighborCt++;
+				}
+			}
+		}
+	}
 
 	return aliveNeighborCt;
 }
