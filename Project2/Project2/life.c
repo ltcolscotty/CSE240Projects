@@ -20,6 +20,7 @@
 #include <string.h>
 #include <stdlib.h>
 
+
 #define NUM_ROWS 5
 #define NUM_COLS 5
 #define DEAD_CHAR 'x'
@@ -59,6 +60,7 @@ int GetInitialState(int init_state[])
 	return validTokenCount;
 }
 
+
 void SetInitialState(char board[][NUM_COLS], int init_state[], int num_alive)
 {
 	for (int r = 0; r < NUM_ROWS; r++)
@@ -75,6 +77,7 @@ void SetInitialState(char board[][NUM_COLS], int init_state[], int num_alive)
 		board[init_state[i] / NUM_COLS][init_state[i] % NUM_COLS] = ALIVE_CHAR;
 	}
 }
+
 
 int CountLiveNeighbors(char board[][NUM_COLS], int r, int c)
 {
@@ -101,6 +104,7 @@ int CountLiveNeighbors(char board[][NUM_COLS], int r, int c)
 	return aliveNeighborCt;
 }
 
+
 void PrintBoard(char board[][NUM_COLS])
 {
 	for (int r = 0; r < NUM_ROWS; r++)
@@ -112,6 +116,7 @@ void PrintBoard(char board[][NUM_COLS])
 		printf("\n");
 	}
 }
+
 
 // Produce an initialList type array and produce a new array with it after gathering what should be alive
 void NextGeneration(char board[][NUM_COLS])
@@ -142,6 +147,7 @@ void PlayGameOfLife()
 {
 
 }
+
 
 int main()
 {
