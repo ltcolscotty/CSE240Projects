@@ -140,6 +140,7 @@ int main()
 	char board[NUM_ROWS][NUM_COLS];
 	int initialState[NUM_ROWS * NUM_COLS];
 	int count = GetInitialState(initialState);
+	SetInitialState(board, initialState, count);
 
 	// testing call
 	for (int i = 0; i < (count); i++)
