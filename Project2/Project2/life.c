@@ -8,11 +8,12 @@
 * Adjacent cells = 3x3 grid with subject at center
 * 
 * Rules:
-* if more than 3 or less than 2, then cell dies
+* if more than 3 or less than 2 neighbors, then cell dies
 * if exactly 3 cells are alive around a dead cell, that new cell lives
 * always use previous generation to produce new generation, eg. use two arrays, and compute new array based on old array
 * 
 * Dead cells will be represented with a 'x', and alive characters will be represented with a 'o' when printed out
+* 
 * 
 */
 
@@ -23,8 +24,8 @@
 
 #define NUM_ROWS 5
 #define NUM_COLS 5
-#define DEAD_CHAR 'x'
-#define ALIVE_CHAR 'o'
+#define DEAD_CHAR '-'
+#define ALIVE_CHAR 'O'
 #define GENERATIONS 7
 #define TOKEN_DELIM ","
 
