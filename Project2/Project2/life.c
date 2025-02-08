@@ -28,17 +28,55 @@
 #define ALIVE_CHAR 'O'
 #define GENERATIONS 7
 #define TOKEN_DELIM ","
+#define INPUT_LIMIT 40
+
+
+void clean_string(char *str)
+{
+	char copied[INPUT_LIMIT];
+	int filteredIndex = 0;
+	char *charPointer = str;
+
+	while (1)
+	{
+		if (*charPointer != '\0')
+		{
+			if ((*charPointer >= 48 && *charPointer <= 57) || (*charPointer == 44))
+			{
+				copied[filteredIndex] = *charPointer;
+				filteredIndex++;
+			}
+		}
+		else
+		{
+			// Check for end of line
+			if (*(charPointer + 1) == '\0')
+			{
+				break;
+			}
+		}
+		charPointer++;
+	}
+
+	copied[filteredIndex - 1] = '\0';
+	strcpy(str, copied);
+}
 
 
 // Out of range numbers will be discarded
 int GetInitialState(int init_state[])
 {
 	int validTokenCount = 0;
-	char inputStr[30];
+	char inputStr[INPUT_LIMIT];
 	printf("Input your start configuration: \n");
-	scanf(" %29s", inputStr);
 
-	char* token;
+	// %s terminates at \0, this should take spaced inputs
+	// REMEMBER TO SET THIS IF YOU UPDATE INPUT_LIMIT
+	scanf(" %39[^\n]", inputStr);
+
+	clean_string(inputStr);
+
+	char *token;
 
 	// First token
 	token = strtok(inputStr, TOKEN_DELIM);
