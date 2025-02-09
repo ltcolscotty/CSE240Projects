@@ -62,6 +62,11 @@ void clean_string(char *str)
 		copied[filteredIndex - 1] = '\0';
 		strcpy(str, copied);
 	}
+	else 
+	{
+		strcpy(str, "");
+	}
+
 }
 
 
