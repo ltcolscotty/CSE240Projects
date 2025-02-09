@@ -50,7 +50,7 @@ void clean_string(char *str)
 		else
 		{
 			// Check for end of line
-			if (*(charPointer + 1) == '\0')
+			if (*(charPointer + 1) == '\0' && *(charPointer + 2) == '\0')
 			{
 				break;
 			}
@@ -61,7 +61,7 @@ void clean_string(char *str)
 
 	if (filteredIndex > 0)
 	{
-		copied[filteredIndex - 1] = '\0';
+		copied[filteredIndex] = '\0';
 		strcpy(str, copied);
 	}
 	else 
