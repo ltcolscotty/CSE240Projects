@@ -2,6 +2,8 @@
 * Aidan Yung
 * 2/6/2025
 * 
+* Conway's game of life on a 5x5 grid
+* 
 * 5x5 array
 * going R->L, initial starting positions techincally based on memory addresses
 * 
@@ -12,7 +14,7 @@
 * if exactly 3 cells are alive around a dead cell, that new cell lives
 * always use previous generation to produce new generation, eg. use two arrays, and compute new array based on old array
 * 
-* Dead cells will be represented with a 'x', and alive characters will be represented with a 'o' when printed out
+* Dead cells will be represented with a '-', and alive characters will be represented with a 'o' when printed out
 * 
 * 
 */
