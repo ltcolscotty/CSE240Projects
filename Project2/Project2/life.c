@@ -57,6 +57,8 @@ void clean_string(char *str)
 		}
 		charPointer++;
 	}
+
+
 	if (filteredIndex > 0)
 	{
 		copied[filteredIndex - 1] = '\0';
@@ -79,7 +81,7 @@ int GetInitialState(int init_state[])
 
 	// %s terminates at \0, this should take spaced inputs
 	// REMEMBER TO SET THIS IF YOU UPDATE INPUT_LIMIT
-	scanf(" %39[^\n]", inputStr);
+	int inputCt = scanf(" %39[^\n]", inputStr);
 
 	clean_string(inputStr);
 
