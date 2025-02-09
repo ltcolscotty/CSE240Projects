@@ -57,9 +57,11 @@ void clean_string(char *str)
 		}
 		charPointer++;
 	}
-
-	copied[filteredIndex - 1] = '\0';
-	strcpy(str, copied);
+	if (filteredIndex > 0)
+	{
+		copied[filteredIndex - 1] = '\0';
+		strcpy(str, copied);
+	}
 }
 
 
