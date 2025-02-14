@@ -1,9 +1,27 @@
+/*
+* guessing.c
+* 
+* Aidan Yung
+* 2/14/2025
+* 
+* Guessing game functionality
+* 
+* The point of this project is to demonstrate file writing and reading capabilities
+* The base game function is minimally modified, if at all
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
 
-#define LEADERBOARD_FILE "guessing_leaderboard.txt"
+#define LEADERBOARD_FILE "guessing_leaderboard.bin"
+
+typedef struct 
+{
+	char fName[40];
+	unsigned int score;
+} Person;
 
 // Checks cleans input for handling later. optionCount is the size of the array or number of options
 bool verifyInput(char* stringItems[], int optionCount, char* input) {
@@ -17,17 +35,39 @@ bool verifyInput(char* stringItems[], int optionCount, char* input) {
 
 // Takes input and action for quit dialogue
 bool determineContinue() {
-	char inputChar[30];
+	char inputChar[40];
 	printf("Press 'q' to quit, press any key to continue:\n");
-	scanf("%s", inputChar);
-	while (getchar() != '\n');
+	int charCt = scanf(" %39s", &inputChar);
+	inputChar[39] = '\0'; //redundancy
+	while (getchar() != '\n'); // clear buffer
 	// Returns true for anything that isn't "q"
 	return (strcmp(inputChar, "q") != 0);
 }
 
-void displayLeaderboard()
-{
 
+void displayLeaderboard(Person p1)
+{
+	Person playerList[5];
+
+	FILE* fp = NULL;
+
+	fp = fopen(LEADERBOARD_FILE, "wb");
+
+	if (fp == NULL)
+	{
+		printf(stderr, "Cannot open %s.\n", LEADERBOARD_FILE);
+		exit(1);
+	}
+
+
+
+	fclose(fp);
+}
+
+
+void getName(char* name) {
+	printf("Enter your name: \n");
+	int inputCt = scanf("%s", name);
 }
 
 
@@ -45,6 +85,17 @@ int GetGuess()
 		while (getchar() != '\n'); // clear buffer
 	}
 	return guess;
+}
+
+
+void playRound()
+{
+	Person p1;
+	getName(p1.fName);
+
+	p1.score = PlayGuessingGame();
+
+	displayLeaderboard(p1);
 }
 
 
@@ -76,6 +127,17 @@ int PlayGuessingGame()
 
 int main()
 {
+	bool continueGame = true;
+	printf("Welcome to the Guessing Game!\n");
 
+	// Initial quit question as seen in example before going into the loop
+	continueGame = determineContinue();
+
+	while (continueGame) {
+		playRound();
+		continueGame = determineContinue();
+	}
+
+	printf("Goodbye!\n");
 	return 0;
 }
