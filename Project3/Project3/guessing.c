@@ -47,7 +47,13 @@ bool determineContinue() {
 
 void displayLeaderboard(Person p1)
 {
-	Person playerList[5];
+	Person *playerList = malloc(6*sizeof(Person));
+
+	if (playerList == NULL)
+	{
+		printf(stderr, "Memory allocation failed");
+		exit(1);
+	}
 
 	FILE* fp = NULL;
 
@@ -61,6 +67,7 @@ void displayLeaderboard(Person p1)
 		if (fp == NULL)
 		{
 			printf(stderr, "File creation failed.\n");
+			free(playerList);
 			exit(1);
 		}
 	}
@@ -70,15 +77,22 @@ void displayLeaderboard(Person p1)
 	int fSize = ftell(fp);
 	int recordCt = fSize / sizeof(Person);
 
-	Person* recordList[6];
+	// Safety
+	if (recordCt > 6)
+	{
+		recordCt = 6;
+	}
+
+	rewind(fp);
 
 	int recordIndex = 0;
 	for (recordIndex; recordIndex < recordCt; recordIndex++)
 	{
-		recordList[recordIndex] = fread(fp, sizeof(Person), recordCt, fp);
+		fread(&playerList[recordIndex], sizeof(Person), 1, fp);
 	}
 
 	fclose(fp);
+	free(playerList);
 }
 
 
