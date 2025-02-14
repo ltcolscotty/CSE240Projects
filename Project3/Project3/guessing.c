@@ -51,15 +51,32 @@ void displayLeaderboard(Person p1)
 
 	FILE* fp = NULL;
 
-	fp = fopen(LEADERBOARD_FILE, "wb");
+	fp = fopen(LEADERBOARD_FILE, "rb+");
 
 	if (fp == NULL)
 	{
-		printf(stderr, "Cannot open %s.\n", LEADERBOARD_FILE);
-		exit(1);
+		// For first time execution
+		printf("No leaderboard file found, creating new file.\n");
+		fp = fopen(LEADERBOARD_FILE, "wb+");
+		if (fp == NULL)
+		{
+			printf(stderr, "File creation failed.\n");
+			exit(1);
+		}
 	}
 
+	fseek(fp, 0, SEEK_END);
 
+	int fSize = ftell(fp);
+	int recordCt = fSize / sizeof(Person);
+
+	Person* recordList[6];
+
+	int recordIndex = 0;
+	for (recordIndex; recordIndex < recordCt; recordIndex++)
+	{
+		recordList[recordIndex] = fread(fp, sizeof(Person), recordCt, fp);
+	}
 
 	fclose(fp);
 }
