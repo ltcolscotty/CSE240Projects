@@ -65,6 +65,7 @@ void printPlayer(Person p1, int place)
 	printf("%d. %s made %d guesses\n", place + 1, p1.fName, p1.score);
 }
 
+// Gets the leaderboard file
 FILE* openLeaderboardFile()
 {
 	FILE* fp = NULL;
@@ -86,6 +87,7 @@ FILE* openLeaderboardFile()
 	return fp;
 }
 
+// get past game records into list for usage
 int readLeaderboardRecords(FILE* fp, Person* playerList, int recordCt)
 {
 	for (int recordIndex = 0; recordIndex < recordCt; recordIndex++)
@@ -95,6 +97,7 @@ int readLeaderboardRecords(FILE* fp, Person* playerList, int recordCt)
 	}
 }
 
+// stores top 5
 void writeLeaderboardRecords(FILE* fp, Person* playerList, int recordCt)
 {
 	fp = fopen(LEADERBOARD_FILE, "wb");
@@ -118,6 +121,7 @@ void writeLeaderboardRecords(FILE* fp, Person* playerList, int recordCt)
 	}
 }
 
+// Displays results
 void displayLeaderboardResults(Person p1, Person* playerList, int* recordCt)
 {
 	// Add player to leaderboard
@@ -151,7 +155,8 @@ void displayLeaderboardResults(Person p1, Person* playerList, int* recordCt)
 	printf("----------\n");
 }
 
-void displayLeaderboard(Person p1)
+// Handles displaying leaderboard and storing information
+void finishingProcedures(Person p1)
 {
 	Person* playerList = malloc(6 * sizeof(Person));
 
@@ -248,8 +253,9 @@ void playRound()
 
 	p1.score = PlayGuessingGame();
 
-	displayLeaderboard(p1);
+	finishingProcedures(p1);
 }
+
 
 int main()
 {
