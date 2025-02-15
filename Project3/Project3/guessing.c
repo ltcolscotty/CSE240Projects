@@ -148,7 +148,7 @@ void displayLeaderboardResults(Person p1, Person* playerList, int* recordCt)
 			}
 			else 
 			{
-				continue;
+				;
 			}
 			printPlayer(playerList[i], i);
 		}
