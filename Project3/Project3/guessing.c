@@ -61,7 +61,7 @@ bool determineContinue() {
 // Easier print function to auto format
 void printPlayer(Person p1, int place)
 {
-	printf("%d. %s made %d guesses\n", place, p1.fName, p1.score);
+	printf("%d. %s made %d guesses\n", place + 1, p1.fName, p1.score);
 }
 
 
@@ -97,11 +97,9 @@ void displayLeaderboard(Person p1)
 	int fSize = ftell(fp);
 	int recordCt = fSize / sizeof(Person);
 
-	// Safety
-	if (recordCt > 6)
-	{
-		recordCt = 6;
-	}
+	
+
+	printf("Records retrieved: %d\n", recordCt);
 
 	rewind(fp);
 
@@ -109,12 +107,24 @@ void displayLeaderboard(Person p1)
 	for (int recordIndex = 0; recordIndex < recordCt; recordIndex++)
 	{
 		fread(&playerList[recordIndex], sizeof(Person), 1, fp);
+		printf("Retrieving [%s]", playerList[recordIndex].fName);
 	}
 
 	fclose(fp);
 
 	// Display leaderboard
 	printf("----------\nLeaderboard:\n");
+
+	
+	// Safety
+	if (recordCt > 5)
+	{
+		recordCt = 5;
+	}
+
+	// Add player to leaderboard
+	playerList[recordCt] = p1;
+	recordCt++;
 
 	// New leaderboard
 	if (recordCt == 0)
@@ -136,6 +146,13 @@ void displayLeaderboard(Person p1)
 	// Write to new file
 	fp = fopen(LEADERBOARD_FILE, "w");
 
+	if (fp == NULL)
+	{
+		printf(stderr, "Failed to save leaderboard\n");
+		free(playerList);
+		exit(1);
+	}
+
 	// store top 5
 	if (recordCt > 5)
 	{
@@ -144,6 +161,7 @@ void displayLeaderboard(Person p1)
 
 	for (int i = 0; i < recordCt; i++)
 	{
+		printf("Saving [%s]...\n", playerList[i].fName);
 		fwrite(&playerList[i], sizeof(Person), 1, fp);
 	}
 
