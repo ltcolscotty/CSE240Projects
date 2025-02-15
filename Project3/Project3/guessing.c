@@ -64,17 +64,8 @@ void printPlayer(Person p1, int place)
 	printf("%d. %s made %d guesses\n", place + 1, p1.fName, p1.score);
 }
 
-
-void displayLeaderboard(Person p1)
+FILE* openLeaderboardFile()
 {
-	Person *playerList = malloc(6*sizeof(Person));
-
-	if (playerList == NULL)
-	{
-		printf(stderr, "Memory allocation failed");
-		exit(1);
-	}
-
 	FILE* fp = NULL;
 
 	fp = fopen(LEADERBOARD_FILE, "rb+");
@@ -87,64 +78,30 @@ void displayLeaderboard(Person p1)
 		if (fp == NULL)
 		{
 			printf(stderr, "File creation failed.\n");
-			free(playerList);
 			exit(1);
 		}
 	}
 
-	fseek(fp, 0, SEEK_END);
+	return fp;
+}
 
-	int fSize = ftell(fp);
-	int recordCt = fSize / sizeof(Person);
-
-	
-
-	printf("Records retrieved: %d\n", recordCt);
-
-	rewind(fp);
-
-	// put binary file info into array
+int readLeaderboardRecords(FILE* fp, Person* playerList, int recordCt)
+{
 	for (int recordIndex = 0; recordIndex < recordCt; recordIndex++)
 	{
 		fread(&playerList[recordIndex], sizeof(Person), 1, fp);
-		printf("Retrieving [%s]", playerList[recordIndex].fName);
+		printf("Retrieved: [%s]\n", playerList[recordIndex].fName);
 	}
+}
 
-	fclose(fp);
+void writeLeaderboardRecords(FILE* fp, Person* playerList, int recordCt)
+{
+	fp = fopen(LEADERBOARD_FILE, "wb");
 
-	// Display leaderboard
-	printf("----------\nLeaderboard:\n");
-
-	
-	// Safety
 	if (recordCt > 5)
 	{
 		recordCt = 5;
 	}
-
-	// Add player to leaderboard
-	playerList[recordCt] = p1;
-	recordCt++;
-
-	// New leaderboard
-	if (recordCt == 0)
-	{
-		printPlayer(p1, 1);
-	}
-	else
-	{
-		// Existing leaderboard
-		qsort(playerList, recordCt, sizeof(Person), compare);
-		for (int i = 0; i < recordCt; i++)
-		{
-			printPlayer(playerList[i], i);
-		}
-	}
-
-	printf("----------\n");
-
-	// Write to new file
-	fp = fopen(LEADERBOARD_FILE, "w");
 
 	if (fp == NULL)
 	{
@@ -153,22 +110,86 @@ void displayLeaderboard(Person p1)
 		exit(1);
 	}
 
-	// store top 5
-	if (recordCt > 5)
-	{
-		recordCt = 5;
-	}
-
 	for (int i = 0; i < recordCt; i++)
 	{
-		printf("Saving [%s]...\n", playerList[i].fName);
+		//printf("Saving [%s]...\n", playerList[i].fName);	// Troubleshooting
 		fwrite(&playerList[i], sizeof(Person), 1, fp);
 	}
+}
+
+void displayLeaderboardResults(Person p1, Person* playerList, int* recordCt)
+{
+	// Add player to leaderboard
+	playerList[*recordCt] = p1;
+	(*recordCt)++;
+
+	// Display leaderboard
+	printf("----------\nLeaderboard:\n");
+
+	// New leaderboard
+	if (*recordCt == 0)
+	{
+		printPlayer(p1, 1);
+	}
+	else
+	{
+		// Existing leaderboard
+		qsort(playerList, *recordCt, sizeof(Person), compare);
+		for (int i = 0; i < *recordCt; i++)
+		{
+			printPlayer(playerList[i], i);
+		}
+	}
+
+	// Ending
+	printf("----------\n");
+}
+
+void fileIOErrorHandler(const char* message, Person* buffer, FILE* fp)
+{
+	if (fp)
+		fclose(fp);
+	if (buffer)
+		free(buffer);
+	printf("%s",message);
+	exit(1);
+}
+
+void displayLeaderboard(Person p1)
+{
+	Person* playerList = malloc(6 * sizeof(Person));
+
+	if (playerList == NULL)
+	{
+		printf(stderr, "Memory allocation failed");
+		exit(1);
+	}
+
+	FILE* fp = openLeaderboardFile();
+
+	fseek(fp, 0, SEEK_END);
+
+	int fSize = ftell(fp);
+	int recordCt = fSize / sizeof(Person);
+	rewind(fp);
+	readLeaderboardRecords(fp, playerList, recordCt);
+
+	fclose(fp);
+
+	// Safety check to make sure current count is not above 5
+	if (recordCt > 6)
+	{
+		recordCt = 6;
+	}
+
+	printf("recordCt: %d\n", recordCt);
+
+	displayLeaderboardResults(p1, playerList, &recordCt);
+	writeLeaderboardRecords(fp, playerList, recordCt);
 
 	fclose(fp);
 	free(playerList);
 }
-
 
 // Get player username
 void getName(char* name) {
