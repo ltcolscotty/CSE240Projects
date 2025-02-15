@@ -138,11 +138,11 @@ void displayLeaderboardResults(Person p1, Person* playerList, int* recordCt)
 		qsort(playerList, *recordCt, sizeof(Person), compare);
 		for (int i = 0; i < *recordCt; i++)
 		{
-			if ((i == 6) && (strcmp(playerList->fName, p1.fName) == 0))
+			if ((i == 5) && (strcmp(playerList->fName, p1.fName) == 0))
 			{
 				printf("----- You -----\n");
 			}
-			else if ((i == 6) && (strcmp(playerList->fName, p1.fName) != 0))
+			else if ((i == 5) && (strcmp(playerList->fName, p1.fName) != 0))
 			{
 				printf("----- Knocked Out -----\n");
 			}
@@ -185,7 +185,7 @@ void displayLeaderboard(Person p1)
 		recordCt = 6;
 	}
 
-	printf("recordCt: %d\n", recordCt);
+	// printf("recordCt: %d\n", recordCt); // Troubleshooting thing
 
 	displayLeaderboardResults(p1, playerList, &recordCt);
 	writeLeaderboardRecords(fp, playerList, recordCt);
