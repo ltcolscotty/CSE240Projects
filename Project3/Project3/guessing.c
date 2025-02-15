@@ -14,14 +14,27 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <math.h>
 
 #define LEADERBOARD_FILE "guessing_leaderboard.bin"
 
 typedef struct 
 {
 	char fName[40];
-	unsigned int score;
+	int score;
 } Person;
+
+
+// compare function for qsort from stdlib
+int compare(const void* a, const void* b)
+{
+	const Person* p1 = (const Person*)a;
+	const Person* p2 = (const Person*)b;
+
+	// Returns 0 if tied/equal, 1 if p1 > p2, and -1 if p2 > p1
+	return (p1->score > p2->score) - (p1->score < p2->score);
+}
+
 
 // Checks cleans input for handling later. optionCount is the size of the array or number of options
 bool verifyInput(char* stringItems[], int optionCount, char* input) {
@@ -42,6 +55,13 @@ bool determineContinue() {
 	while (getchar() != '\n'); // clear buffer
 	// Returns true for anything that isn't "q"
 	return (strcmp(inputChar, "q") != 0);
+}
+
+
+// Easier print function to auto format
+void printPlayer(Person p1, int place)
+{
+	printf("%d. %s made %d guesses\n", place, p1.fName, p1.score);
 }
 
 
@@ -85,10 +105,46 @@ void displayLeaderboard(Person p1)
 
 	rewind(fp);
 
-	int recordIndex = 0;
-	for (recordIndex; recordIndex < recordCt; recordIndex++)
+	// put binary file info into array
+	for (int recordIndex = 0; recordIndex < recordCt; recordIndex++)
 	{
 		fread(&playerList[recordIndex], sizeof(Person), 1, fp);
+	}
+
+	fclose(fp);
+
+	// Display leaderboard
+	printf("----------\nLeaderboard:\n");
+
+	// New leaderboard
+	if (recordCt == 0)
+	{
+		printPlayer(p1, 1);
+	}
+	else
+	{
+		// Existing leaderboard
+		qsort(playerList, recordCt, sizeof(Person), compare);
+		for (int i = 0; i < recordCt; i++)
+		{
+			printPlayer(playerList[i], i);
+		}
+	}
+
+	printf("----------\n");
+
+	// Write to new file
+	fp = fopen(LEADERBOARD_FILE, "w");
+
+	// store top 5
+	if (recordCt > 5)
+	{
+		recordCt = 5;
+	}
+
+	for (int i = 0; i < recordCt; i++)
+	{
+		fwrite(&playerList[i], sizeof(Person), 1, fp);
 	}
 
 	fclose(fp);
@@ -96,12 +152,15 @@ void displayLeaderboard(Person p1)
 }
 
 
+// Get player username
 void getName(char* name) {
 	printf("Enter your name: \n");
 	int inputCt = scanf("%s", name);
+	while (getchar() != '\n'); // clear buffer
 }
 
 
+// Gets guess from player
 int GetGuess()
 {
 	int guess;
@@ -119,17 +178,7 @@ int GetGuess()
 }
 
 
-void playRound()
-{
-	Person p1;
-	getName(p1.fName);
-
-	p1.score = PlayGuessingGame();
-
-	displayLeaderboard(p1);
-}
-
-
+// Guessing game
 int PlayGuessingGame()
 {
 	int guessCt = 0;
@@ -138,7 +187,7 @@ int PlayGuessingGame()
 	srand((unsigned int)time(NULL)); // Seed rand with current time
 	int numberToGuess = rand() % 91 + 10;
 	double squareRoot = sqrt(numberToGuess);
-	printf("%.8f is the square root of what number?", squareRoot);
+	printf("%.8f is the square root of what number?\n", squareRoot);
 	bool done = false;
 	while (!done)
 	{
@@ -154,6 +203,17 @@ int PlayGuessingGame()
 	printf("You got it, baby!\n");
 
 	return guessCt;
+}
+
+// Play round function packages everything together
+void playRound()
+{
+	Person p1;
+	getName(p1.fName);
+
+	p1.score = PlayGuessingGame();
+
+	displayLeaderboard(p1);
 }
 
 int main()
