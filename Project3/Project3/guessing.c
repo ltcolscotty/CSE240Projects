@@ -140,10 +140,15 @@ void displayLeaderboardResults(Person p1, Person* playerList, int* recordCt)
 		{
 			if ((i == 6) && (strcmp(playerList->fName, p1.fName) == 0))
 			{
-				printf("----- You -----");
+				printf("----- You -----\n");
 			}
-			else {
-				printf("----- Knocked Out -----");
+			else if ((i == 6) && (strcmp(playerList->fName, p1.fName) != 0))
+			{
+				printf("----- Knocked Out -----\n");
+			}
+			else 
+			{
+				continue;
 			}
 			printPlayer(playerList[i], i);
 		}
