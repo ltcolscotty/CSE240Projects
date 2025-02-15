@@ -74,7 +74,7 @@ FILE* openLeaderboardFile()
 	if (fp == NULL)
 	{
 		// For first time execution
-		printf("No leaderboard file found, creating new file.\n");
+		// printf("No leaderboard file found, creating new file.\n"); // Troubleshooting
 		fp = fopen(LEADERBOARD_FILE, "wb+");
 		if (fp == NULL)
 		{
@@ -91,7 +91,7 @@ int readLeaderboardRecords(FILE* fp, Person* playerList, int recordCt)
 	for (int recordIndex = 0; recordIndex < recordCt; recordIndex++)
 	{
 		fread(&playerList[recordIndex], sizeof(Person), 1, fp);
-		printf("Retrieved: [%s]\n", playerList[recordIndex].fName);
+		// printf("Retrieved: [%s]\n", playerList[recordIndex].fName); // troubleshooting
 	}
 }
 
@@ -138,22 +138,19 @@ void displayLeaderboardResults(Person p1, Person* playerList, int* recordCt)
 		qsort(playerList, *recordCt, sizeof(Person), compare);
 		for (int i = 0; i < *recordCt; i++)
 		{
+			if ((i == 6) && (strcmp(playerList->fName, p1.fName) == 0))
+			{
+				printf("----- You -----");
+			}
+			else {
+				printf("----- Knocked Out -----");
+			}
 			printPlayer(playerList[i], i);
 		}
 	}
 
 	// Ending
 	printf("----------\n");
-}
-
-void fileIOErrorHandler(const char* message, Person* buffer, FILE* fp)
-{
-	if (fp)
-		fclose(fp);
-	if (buffer)
-		free(buffer);
-	printf("%s",message);
-	exit(1);
 }
 
 void displayLeaderboard(Person p1)
