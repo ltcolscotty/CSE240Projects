@@ -15,6 +15,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <math.h>
+#include <time.h>
 
 #define LEADERBOARD_FILE "guessing_leaderboard.bin"
 
@@ -77,7 +78,7 @@ FILE* openLeaderboardFile()
 		fp = fopen(LEADERBOARD_FILE, "wb+");
 		if (fp == NULL)
 		{
-			printf(stderr, "File creation failed.\n");
+			fprintf(stderr, "File creation failed.\n");
 			exit(1);
 		}
 	}
@@ -105,7 +106,7 @@ void writeLeaderboardRecords(FILE* fp, Person* playerList, int recordCt)
 
 	if (fp == NULL)
 	{
-		printf(stderr, "Failed to save leaderboard\n");
+		fprintf(stderr, "Failed to save leaderboard\n");
 		free(playerList);
 		exit(1);
 	}
@@ -161,7 +162,7 @@ void displayLeaderboard(Person p1)
 
 	if (playerList == NULL)
 	{
-		printf(stderr, "Memory allocation failed");
+		fprintf(stderr, "Memory allocation failed");
 		exit(1);
 	}
 
