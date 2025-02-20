@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "slist.h"
 
-typedef SList Deque;
+typedef slist Deque;
 
 void push_back(Deque* q, char* data)
 {

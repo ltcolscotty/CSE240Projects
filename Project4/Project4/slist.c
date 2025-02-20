@@ -1,23 +1,42 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "slist.h"
 
-void insertHead(SList* list, char* data)
+void insertHead(slist* list, int data)
+{
+	//---- create new node
+	struct node* newnode;
+	newnode = malloc(sizeof(struct node));
+	newnode->data = data;
+	newnode->next = list->head;
+	//---- adjust pointers
+	list->head = newnode;
+	if (list->tail == NULL)
+		list->tail = newnode;
+}
+
+char* removeHead(slist* list)
 {
 
 }
 
-char* removeHead(SList* list)
+void insertTail(slist* list, int data)
 {
 
 }
 
-void insertTail(SList* list, char* data)
+char* removeTail(slist* list)
 {
 
 }
 
-char* removeTail(SList* list)
+void printList(slist* list)
 {
-
+	struct node* tmp = list->head;
+	while (tmp != NULL)
+	{
+		printf("%d->", tmp->data);
+		tmp = tmp->next;
+	}
+	printf("NULL\n");
 }
