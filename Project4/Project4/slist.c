@@ -35,6 +35,8 @@ char* removeHead(slist* list)
 	char* headData = temp->data;
 	struct node* newHead = temp->next;
 
+	list->head = newHead;
+
 	// Handle emptied list case
 	if (newHead == NULL)
 	{
@@ -113,7 +115,16 @@ void printList(slist* list)
 	struct node* tmp = list->head;
 	while (tmp != NULL)
 	{
-		printf("%s->", tmp->data);
+		if (tmp->data == NULL)
+		{
+			// handle null case
+			printf("NULL->");
+		}
+		else
+		{
+			printf("%s->", tmp->data);
+		}
+		
 		tmp = tmp->next;
 	}
 	printf("NULL\n");
