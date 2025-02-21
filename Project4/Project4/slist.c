@@ -1,5 +1,12 @@
+/*
+* Aidan Yung
+* 2/21/2025
+* Deque Project
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "slist.h"
 
 void insertHead(slist* list, char* data)
@@ -112,20 +119,36 @@ char* removeTail(slist* list)
 
 void printList(slist* list)
 {
-	struct node* tmp = list->head;
-	while (tmp != NULL)
+	// empty case
+	if (list == NULL)
 	{
-		if (tmp->data == NULL)
+		return;
+	}
+
+	if (list->head == NULL || list->tail == NULL)
+	{
+		printf("Error: improperly initiated list, skipping print\n");
+		return;
+	}
+
+	struct node* tmp = list->head;
+	bool endOfList = false;
+
+	while (!endOfList)
+	{
+		if (tmp == list->tail)
+			endOfList = true;
+		
+		if (tmp->data != NULL)
 		{
-			// handle null case
-			printf("NULL->");
+			printf("%s->", tmp->data);
+			tmp = tmp->next;
 		}
 		else
 		{
-			printf("%s->", tmp->data);
+			printf("NULL->");
+			tmp = tmp->next;
 		}
-		
-		tmp = tmp->next;
 	}
 	printf("NULL\n");
 }
