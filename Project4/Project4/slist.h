@@ -1,6 +1,7 @@
 #ifndef slist_h
 #define slist_h
 #include <stdio.h>
+
 struct node
 {
 	int data;
