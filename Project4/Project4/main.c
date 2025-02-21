@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "slist.h"
 
+// ------------ DEQUE ------------
+
 typedef slist Deque;
 
 void push_back(Deque* q, char* data)
@@ -23,6 +25,8 @@ char* pop_front(Deque* q)
 {
 
 }
+
+// ------------ MAIN PROGRAM ------------
 
 int main()
 {

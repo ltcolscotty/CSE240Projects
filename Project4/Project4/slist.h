@@ -4,7 +4,7 @@
 
 struct node
 {
-	int data;
+	char* data;
 	struct node* next;
 };
 
@@ -16,11 +16,11 @@ struct singlylinkedlist
 
 typedef struct singlylinkedlist slist;
 
-void insertHead(slist* list, int data);
+void insertHead(slist* list, char* data);
 
 char* removeHead(slist* list);
 
-void insertTail(slist* list, int data);
+void insertTail(slist* list, char* data);
 
 char* removeTail(slist* list);
 
