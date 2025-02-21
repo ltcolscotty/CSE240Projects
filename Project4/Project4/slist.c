@@ -27,7 +27,6 @@ char* removeHead(slist* list)
 		return NULL;
 	}
 
-
 	struct node* temp = list->head;
 	struct node* newHead = temp->next;
 	if (newHead != NULL)
@@ -52,7 +51,22 @@ void insertTail(slist* list, int data)
 
 char* removeTail(slist* list)
 {
+	if (list == NULL || list->head == NULL)
+	{
+		return NULL;
+	}
 
+	struct node* trackedTail = list->tail;
+	struct node* currentNode = list->head;
+
+	// Go to node before tail
+	while (currentNode->next != trackedTail)
+	{
+		currentNode = currentNode->next;
+	}
+
+	currentNode->next = NULL;
+	list->tail = currentNode;
 }
 
 void printList(slist* list)
