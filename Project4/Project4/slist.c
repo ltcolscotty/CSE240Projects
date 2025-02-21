@@ -7,6 +7,11 @@ void insertHead(slist* list, int data)
 	//---- create new node
 	struct node* newnode;
 	newnode = malloc(sizeof(struct node));
+	if (newnode == NULL)
+	{
+		fprintf(stderr, "slist: Memory allocation failed");
+		exit(1);
+	}
 	newnode->data = data;
 	newnode->next = list->head;
 	//---- adjust pointers
@@ -22,7 +27,15 @@ char* removeHead(slist* list)
 
 void insertTail(slist* list, int data)
 {
-
+	//---- create new node
+	struct node* newnode;
+	newnode = malloc(sizeof(struct node));
+	if (newnode == NULL)
+	{
+		fprintf(stderr, "slist: Memory allocation failed");
+		exit(1);
+	}
+	newnode->data = data;
 }
 
 char* removeTail(slist* list)

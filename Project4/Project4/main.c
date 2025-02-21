@@ -23,6 +23,7 @@ char* pop_front(Deque* q)
 {
 
 }
+
 int main()
 {
 	return 0;
