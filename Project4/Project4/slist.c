@@ -22,7 +22,19 @@ void insertHead(slist* list, int data)
 
 char* removeHead(slist* list)
 {
+	if (list == NULL || list->head == NULL)
+	{
+		return NULL;
+	}
 
+
+	struct node* temp = list->head;
+	struct node* newHead = temp->next;
+	if (newHead != NULL)
+	{
+		list->head = newHead;
+	}
+	free(temp);
 }
 
 void insertTail(slist* list, int data)
