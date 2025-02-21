@@ -16,6 +16,8 @@ void insertHead(slist* list, int data)
 	newnode->next = list->head;
 	//---- adjust pointers
 	list->head = newnode;
+
+	// Empty list case
 	if (list->tail == NULL)
 		list->tail = newnode;
 }
@@ -76,6 +78,7 @@ char* removeTail(slist* list)
 	struct node* trackedTail = list->tail;
 	struct node* currentNode = list->head;
 
+	// Handle emptied list case
 	if (trackedTail == currentNode)
 	{
 		list->head = NULL;
