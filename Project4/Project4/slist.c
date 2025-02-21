@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "slist.h"
 
-void insertHead(slist* list, int data)
+void insertHead(slist* list, char* data)
 {
 	//---- create new node
 	struct node* newnode;
@@ -14,6 +14,7 @@ void insertHead(slist* list, int data)
 	}
 	newnode->data = data;
 	newnode->next = list->head;
+
 	//---- adjust pointers
 	list->head = newnode;
 
@@ -31,6 +32,7 @@ char* removeHead(slist* list)
 	}
 
 	struct node* temp = list->head;
+	char* headData = temp->data;
 	struct node* newHead = temp->next;
 
 	// Handle emptied list case
@@ -38,10 +40,12 @@ char* removeHead(slist* list)
 	{
 		list->tail = NULL;
 	}
+
 	free(temp);
+	return headData;
 }
 
-void insertTail(slist* list, int data)
+void insertTail(slist* list, char* data)
 {
 	//---- create new node
 	struct node* newnode;
@@ -70,6 +74,7 @@ void insertTail(slist* list, int data)
 
 char* removeTail(slist* list)
 {
+	// Null list case
 	if (list == NULL || list->head == NULL)
 	{
 		return NULL;
@@ -83,8 +88,10 @@ char* removeTail(slist* list)
 	{
 		list->head = NULL;
 		list->tail = NULL;
+
+		char* tailData = trackedTail->data;
 		free(trackedTail);
-		return;
+		return tailData;
 	}
 
 	// Go to node before tail
@@ -95,7 +102,10 @@ char* removeTail(slist* list)
 
 	currentNode->next = NULL;
 	list->tail = currentNode;
+
+	char* tailData = trackedTail->data;
 	free(trackedTail);
+	return tailData;
 }
 
 void printList(slist* list)
@@ -103,7 +113,7 @@ void printList(slist* list)
 	struct node* tmp = list->head;
 	while (tmp != NULL)
 	{
-		printf("%d->", tmp->data);
+		printf("%s->", tmp->data);
 		tmp = tmp->next;
 	}
 	printf("NULL\n");
