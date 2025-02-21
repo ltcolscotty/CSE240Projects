@@ -52,6 +52,14 @@ void insertTail(slist* list, int data)
 
 	newnode->data = data;
 
+	// Empty list case
+	if (list->head == NULL)
+	{
+		list->head = newnode;
+		list->tail = newnode;
+		return;
+	}
+
 	// Add and set tail to list
 	struct node* currentTail = list->tail;
 	currentTail->next = newnode;
