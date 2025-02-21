@@ -22,6 +22,7 @@ void insertHead(slist* list, int data)
 
 char* removeHead(slist* list)
 {
+	// Handle cases of null lists
 	if (list == NULL || list->head == NULL)
 	{
 		return NULL;
@@ -29,9 +30,11 @@ char* removeHead(slist* list)
 
 	struct node* temp = list->head;
 	struct node* newHead = temp->next;
-	if (newHead != NULL)
+
+	// Handle emptied list case
+	if (newHead == NULL)
 	{
-		list->head = newHead;
+		list->tail = NULL;
 	}
 	free(temp);
 }
@@ -46,7 +49,13 @@ void insertTail(slist* list, int data)
 		fprintf(stderr, "slist: Memory allocation failed");
 		exit(1);
 	}
+
 	newnode->data = data;
+
+	// Add and set tail to list
+	struct node* currentTail = list->tail;
+	currentTail->next = newnode;
+	list->tail = newnode;
 }
 
 char* removeTail(slist* list)
@@ -59,6 +68,14 @@ char* removeTail(slist* list)
 	struct node* trackedTail = list->tail;
 	struct node* currentNode = list->head;
 
+	if (trackedTail == currentNode)
+	{
+		list->head = NULL;
+		list->tail = NULL;
+		free(trackedTail);
+		return;
+	}
+
 	// Go to node before tail
 	while (currentNode->next != trackedTail)
 	{
@@ -67,6 +84,7 @@ char* removeTail(slist* list)
 
 	currentNode->next = NULL;
 	list->tail = currentNode;
+	free(trackedTail);
 }
 
 void printList(slist* list)
