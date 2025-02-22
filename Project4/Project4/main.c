@@ -89,28 +89,45 @@ char getInput() {
 	return choice[0];
 }
 
+void display(struct node* n)
+{
+	printf("%s\n", n->data);
+}
+
+void getToPrevious(Deque* q, struct node* curNode)
+{
+	struct node* temp = q->head;
+
+	while (temp->next != curNode)
+	{
+		temp = temp->next;
+	}
+
+	curNode = temp;
+}
+
 void page(Deque* q)
 {
 	char option = malloc(sizeof(char));
-
-
 	
 	// Initial
 	option = getInput();
 
+	struct node* curNode = q->head;
+
 	while (option != 'q')
 	{
 		
-
 		if (option == 'f')
 		{
-			
+			display(curNode);
+			curNode = curNode->next;
 		}
 		else
 		{
-
+			getToPrevious(q, curNode);
+			display(curNode);
 		}
-		
 		option = getInput();
 	}
 
