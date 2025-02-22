@@ -10,7 +10,7 @@
 #include <string.h>
 #include "slist.h"
 
-#define FILENAME "testFile.txt"
+#define FILENAME "names.txt"
 #define MAX_NAME_LEN 50
 
 // ------------ DEQUE WRAPPERS ------------
@@ -39,6 +39,7 @@ char* pop_front(Deque* q)
 
 // ------------ MAIN PROGRAM ------------
 
+// loads data from FILENAME constant
 void loadDataFromFile(Deque* q)
 {
 	bool done = false;
@@ -117,7 +118,6 @@ void page(Deque* q)
 				char* data = pop_back(q);
 				push_front(q, data);
 			}
-			
 		}
 
 		if (!first)
