@@ -117,19 +117,35 @@ void page(Deque* q)
 	// initial
 	char option = getInput();
 
+	bool first = true;
+
 	while (option != 'q')
 	{
-		if (option == 'f')
+		if (first)
+		{
+			printf("%s\n", q->head->data);
+		}
+
+		if (option == 'f' && !first)
 		{
 			char* data = pop_front(q);
 			push_back(q, data);
 		}
 		else
 		{
-			char* data = pop_back(q);
-			push_front(q, data);
+			if (!first)
+			{
+				char* data = pop_back(q);
+				push_front(q, data);
+			}
+			
 		}
-		printf("%s\n", q->head->data);
+
+		if (!first)
+		{
+			printf("%s\n", q->head->data);
+		}
+		first = false;
 		option = getInput();
 	}
 
