@@ -94,42 +94,54 @@ void display(struct node* n)
 	printf("%s\n", n->data);
 }
 
-void getToPrevious(Deque* q, struct node* curNode)
+struct node* getToPrevious(Deque* q, struct node* curNode)
 {
+
+	if (q == NULL || q->head == NULL || curNode == NULL)
+		return NULL;
+
 	struct node* temp = q->head;
 
-	while (temp->next != curNode)
+	if (temp == curNode)
+		return q->tail;
+
+	while (temp->next && temp->next != curNode)
 	{
 		temp = temp->next;
 	}
 
-	curNode = temp;
+	if (temp->next == curNode)
+		return temp;
+	else
+		return q->tail;
+	
 }
 
 void page(Deque* q)
 {
-	char option = malloc(sizeof(char));
-	
-	// Initial
-	option = getInput();
-
+	// initial
+	char option = getInput();
 	struct node* curNode = q->head;
 
 	while (option != 'q')
 	{
-		
 		if (option == 'f')
 		{
+			if (curNode == q->tail)
+				curNode = q->head;
+			else
+				curNode = curNode->next;
 			display(curNode);
-			curNode = curNode->next;
 		}
 		else
 		{
-			getToPrevious(q, curNode);
+			curNode = getToPrevious(q, curNode);
 			display(curNode);
 		}
 		option = getInput();
 	}
+
+	printf("Goodbye!");
 
 	return;
 
@@ -140,8 +152,9 @@ int main()
 	Deque q = { NULL, NULL };
 
 	loadDataFromFile(&q);
+	printf("loaded successfully");
 
-	printList(&q);
+	page(&q);
 
 	return 0;
 }
