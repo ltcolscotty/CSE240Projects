@@ -89,11 +89,6 @@ char getInput() {
 	return choice[0];
 }
 
-void display(struct node* n)
-{
-	printf("%s\n", n->data);
-}
-
 struct node* getToPrevious(Deque* q, struct node* curNode)
 {
 
@@ -121,30 +116,26 @@ void page(Deque* q)
 {
 	// initial
 	char option = getInput();
-	struct node* curNode = q->head;
 
 	while (option != 'q')
 	{
 		if (option == 'f')
 		{
-			if (curNode == q->tail)
-				curNode = q->head;
-			else
-				curNode = curNode->next;
-			display(curNode);
+			char* data = pop_front(q);
+			push_back(q, data);
 		}
 		else
 		{
-			curNode = getToPrevious(q, curNode);
-			display(curNode);
+			char* data = pop_back(q);
+			push_front(q, data);
 		}
+		printf("%s\n", q->head->data);
 		option = getInput();
 	}
 
 	printf("Goodbye!");
 
 	return;
-
 }
 
 int main()
@@ -152,7 +143,7 @@ int main()
 	Deque q = { NULL, NULL };
 
 	loadDataFromFile(&q);
-	printf("loaded successfully");
+	printf("To scroll, type\nf: forwards, b: backwards, q: quit\n");
 
 	page(&q);
 
