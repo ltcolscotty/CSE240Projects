@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 #include "slist.h"
 
 #define FILENAME "testFile.txt"
@@ -58,6 +59,63 @@ void loadDataFromFile(Deque* q)
 		else
 			done = true;
 	}
+}
+
+// Checks cleans input for handling later. optionCount is the size of the array or number of options
+bool verifyInput(char* stringItems[], int optionCount, char* input) {
+	for (int i = 0; i < optionCount; i++) {
+		if (strcmp(stringItems[i], input) == 0) {
+			return true;
+		}
+	}
+	return false;
+}
+
+// Dialogue for player and returns player move after ensuring a safe input
+char getInput() {
+	char choice[30];
+	bool validChoice = false;
+	char* options[] = { "f", "b", "q" };
+
+	while (!validChoice) {
+		int inputCt = scanf(" %29s", choice);
+		//clear buffer
+		while (getchar() != '\n');
+		validChoice = verifyInput(options, 3, choice);
+		if (!validChoice) {
+			printf("Invalid Option\n");
+		}
+	}
+	return choice[0];
+}
+
+void page(Deque* q)
+{
+	char option = malloc(sizeof(char));
+
+
+	
+	// Initial
+	option = getInput();
+
+	while (option != 'q')
+	{
+		
+
+		if (option == 'f')
+		{
+			
+		}
+		else
+		{
+
+		}
+		
+		option = getInput();
+	}
+
+	return;
+
 }
 
 int main()
