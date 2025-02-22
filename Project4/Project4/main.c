@@ -89,32 +89,9 @@ char getInput() {
 	return choice[0];
 }
 
-struct node* getToPrevious(Deque* q, struct node* curNode)
-{
-
-	if (q == NULL || q->head == NULL || curNode == NULL)
-		return NULL;
-
-	struct node* temp = q->head;
-
-	if (temp == curNode)
-		return q->tail;
-
-	while (temp->next && temp->next != curNode)
-	{
-		temp = temp->next;
-	}
-
-	if (temp->next == curNode)
-		return temp;
-	else
-		return q->tail;
-	
-}
-
 void page(Deque* q)
 {
-	// initial
+	// initial input
 	char option = getInput();
 
 	bool first = true;
@@ -123,9 +100,11 @@ void page(Deque* q)
 	{
 		if (first)
 		{
+			// Prints first element of list regardless of initial input
 			printf("%s\n", q->head->data);
 		}
 
+		// structuring the code this way lets the change happen immediately
 		if (option == 'f' && !first)
 		{
 			char* data = pop_front(q);
@@ -159,6 +138,7 @@ int main()
 	Deque q = { NULL, NULL };
 
 	loadDataFromFile(&q);
+
 	printf("To scroll, type\nf: forwards, b: backwards, q: quit\n");
 
 	page(&q);
