@@ -128,7 +128,7 @@ void page(Deque* q)
 		option = getInput();
 	}
 
-	printf("Goodbye!");
+	printf("Goodbye!\n");
 
 	return;
 }
