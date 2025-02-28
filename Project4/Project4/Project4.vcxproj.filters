@@ -28,6 +28,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="testFile.txt" />
+    <Text Include="names.txt" />
   </ItemGroup>
 </Project>
