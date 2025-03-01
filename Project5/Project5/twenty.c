@@ -125,12 +125,25 @@ void handleQuestion(node* node)
 	else
 	{
 		printf("%s",node->guess);
-		printf("Did I get it right?\n");
+		printf("Did I get it right?\ny/n:\n");
+		char answer = getYN();
+		if (answer == "y")
+		{
+			printf("I win!\n");
+		}
+		else
+		{
+			printf("You win!\n");
+		}
 	}
+
+	return;
 }
 
 int main()
 {
+	node* tree = buildTree();
 
+	handleQuestion(tree);
 	return 0;
 }
