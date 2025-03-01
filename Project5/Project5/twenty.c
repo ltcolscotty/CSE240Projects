@@ -124,7 +124,7 @@ void handleQuestion(node* node)
 		printf("%s", node->question);
 		printf("y/n:\n");
 		char answer = getYN();
-		if (answer == "y")
+		if (answer == 'y')
 		{
 			handleQuestion(node->left);
 		}
@@ -139,7 +139,7 @@ void handleQuestion(node* node)
 		printf("%s",node->guess);
 		printf("Did I get it right?\ny/n:\n");
 		char answer = getYN();
-		if (answer == "y")
+		if (answer == 'y')
 		{
 			printf("I win!\n");
 		}
@@ -161,9 +161,9 @@ int main()
 
 	// Initial quit question as seen in example before going into the loop
 	continueGame = determineContinue();
-	printf("Think of a fruit or vegetable and I will try to guess it!\n");
 
 	while (continueGame) {
+		printf("Think of a fruit or vegetable and I will try to guess it!\n");
 		handleQuestion(tree);
 		continueGame = determineContinue();
 	}

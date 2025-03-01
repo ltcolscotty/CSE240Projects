@@ -26,7 +26,7 @@ node* InsertNode(node* root, int dataval,char* question, char* item)
 	if (root == NULL)
 	{
 		root = newNode;
-		return;
+		return root;
 	}
 
 	if (dataval < root->data)
@@ -38,4 +38,15 @@ node* InsertNode(node* root, int dataval,char* question, char* item)
 		root->right = InsertNode(root->right, dataval, question, item);
 	}
 
+	return root;
+}
+
+void printInOrder(node* node)
+{
+	if (node == NULL)
+		return;
+
+	printInOrder(node->left);
+	printf("%d -> ", node->data);
+	printInOrder(node->right);
 }
