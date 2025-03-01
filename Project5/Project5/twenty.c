@@ -104,6 +104,18 @@ char getYN() {
 	return choice[0];
 }
 
+// Takes input and action for quit dialogue
+bool determineContinue() {
+	char inputChar[40];
+	printf("Press 'q' to quit, press any key to continue:\n");
+	int charCt = scanf(" %39s", &inputChar);
+	inputChar[39] = '\0'; //redundancy
+	while (getchar() != '\n'); // clear buffer
+	// Returns true for anything that isn't "q"
+	return (strcmp(inputChar, "q") != 0);
+}
+
+
 void handleQuestion(node* node)
 {
 	// Check for question
@@ -144,6 +156,18 @@ int main()
 {
 	node* tree = buildTree();
 
-	handleQuestion(tree);
+	bool continueGame = true;
+	printf("Welcome to the Guessing Game!\n");
+
+	// Initial quit question as seen in example before going into the loop
+	continueGame = determineContinue();
+	printf("Think of a fruit or vegetable and I will try to guess it!\n");
+
+	while (continueGame) {
+		handleQuestion(tree);
+		continueGame = determineContinue();
+	}
+
+	printf("Goodbye!\n");
 	return 0;
 }
