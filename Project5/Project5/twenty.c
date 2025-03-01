@@ -10,9 +10,13 @@
 #include <stdbool.h>
 #include "bst.h"
 
-void buildTree(node* root)
+node* buildTree()
 {
+	node* root = NULL;
 
+	root = InsertNode(root, 500, "Does it grow underground", "");
+
+	return root;
 }
 
 // Checks cleans input for handling later. optionCount is the size of the array or number of options
