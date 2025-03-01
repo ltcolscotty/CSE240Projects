@@ -87,7 +87,7 @@ bool verifyInput(char* stringItems[], int optionCount, char* input) {
 }
 
 // Dialogue for player and returns player move after ensuring a safe input
-char getInput() {
+char getYN() {
 	char choice[30];
 	bool validChoice = false;
 	char* options[] = { "y", "n"};
@@ -102,6 +102,31 @@ char getInput() {
 		}
 	}
 	return choice[0];
+}
+
+void handleQuestion(node* node)
+{
+	// Check for question
+	if (strlen(node->question) > 0)
+	{
+		printf("%s", node->question);
+		printf("y/n:\n");
+		char answer = getYN();
+		if (answer == "y")
+		{
+			handleQuestion(node->left);
+		}
+		else
+		{
+			handleQuestion(node->right);
+		}
+	}
+	// Answer
+	else
+	{
+		printf("%s",node->guess);
+		printf("Did I get it right?\n");
+	}
 }
 
 int main()
