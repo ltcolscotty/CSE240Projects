@@ -16,63 +16,62 @@ node* buildTree()
 {
 	node* root = NULL;
 
-	root = InsertNode(root, 500, "Does it grow underground", "");
+	root = InsertNode(root, 500, "Is it a vegetable?\n", "");
 	
 	// Left side (Yes)
 
-	InsertNode(root, 250, "q", "");
-	InsertNode(root, 375, "q", "");
-	InsertNode(root, 350, "q", "");
-	InsertNode(root, 425, "q", "");
-	InsertNode(root, 400, "q", "");
-	InsertNode(root, 450, "q", "");
-	InsertNode(root, 125, "q", "");
-	InsertNode(root, 175, "q", "");
-	InsertNode(root, 200, "q", "");
-	InsertNode(root, 60, "q", "");
-	InsertNode(root, 30, "q", "");
-	InsertNode(root, 100, "q", "");
+	InsertNode(root, 250, "Does it grow underground?\n", "");
+	InsertNode(root, 375, "Does it look like a tree?\n", "");
+	InsertNode(root, 350, "Is it green?\n", "");
+	InsertNode(root, 425, "Is it leafy?\n", "");
+	InsertNode(root, 400, "Are the leaves big?\n", "");
+	InsertNode(root, 450, "Would you eat the pod?\n", "");
+	InsertNode(root, 125, "Is it long?\n", "");
+	InsertNode(root, 175, "Does it have a 'kick' when eaten?\n", "");
+	InsertNode(root, 200, "Does it have an 'earthy' taste?\n", "");
+	InsertNode(root, 60, "Is it orange?\n", "");
 
 	// Left side answers
 
-	InsertNode(root, 30, "", "a");
-	InsertNode(root, 100, "", "a");
-	InsertNode(root, 150, "", "a");
-	InsertNode(root, 180, "", "a");
-	InsertNode(root, 225, "", "a");
-	InsertNode(root, 325, "", "a");
-	InsertNode(root, 360, "", "a");
-	InsertNode(root, 390, "", "a");
-	InsertNode(root, 415, "", "a");
-	InsertNode(root, 435, "", "a");
-	InsertNode(root, 475, "", "a");
+	InsertNode(root, 30, "", "It's a carrot!\n");
+	InsertNode(root, 100, "", "It's daikon!\n");
+	InsertNode(root, 150, "", "It's horseradish!\n");
+	InsertNode(root, 180, "", "It's beets!\n");
+	InsertNode(root, 225, "", "Potatoes must be it!\n");
+	InsertNode(root, 325, "", "It's broccoli isn't it!\n");
+	InsertNode(root, 360, "", "It is cauliflower!\n");
+	InsertNode(root, 390, "", "It must be lettuce!\n");
+	InsertNode(root, 415, "", "It must be spinach!\n");
+	InsertNode(root, 435, "", "It's green beans!\n");
+	InsertNode(root, 475, "", "They are peas!\n");
 
 	// Right side (No)
 
-	InsertNode(root, 750, "q", "");
-	InsertNode(root, 675, "q", "");
-	InsertNode(root, 600, "q", "");
-	InsertNode(root, 550, "q", "");
-	InsertNode(root, 640, "q", "");
-	InsertNode(root, 725, "q", "");
-	InsertNode(root, 875, "q", "");
-	InsertNode(root, 825, "q", "");
-	InsertNode(root, 800, "q", "");
-	InsertNode(root, 925, "q", "");
+	InsertNode(root, 750, "Does it grow on a tree?\n", "");
+	InsertNode(root, 675, "Is it a citrus?\n", "");
+	InsertNode(root, 600, "Is it sour?\n", "");
+	InsertNode(root, 550, "Is it yellow?\n", "");
+	InsertNode(root, 640, "Is it red on the inside?\n", "");
+	InsertNode(root, 725, "Is it tropical in origin?\n", "");
+	InsertNode(root, 875, "Does it grow in a bush?\n", "");
+	InsertNode(root, 825, "Is it sweet?\n", "");
+	InsertNode(root, 800, "Is it red?\n", "");
+	InsertNode(root, 925, "Can it get very large?\n", "");
+	InsertNode(root, 900, "Can it be used in pie?\n", "");
 
 	// Right side answers
-	InsertNode(root, 525, "", "a");
-	InsertNode(root, 575, "", "a");
-	InsertNode(root, 630, "", "a");
-	InsertNode(root, 650, "", "a");
-	InsertNode(root, 700, "", "a");
-	InsertNode(root, 735, "", "a");
-	InsertNode(root, 775, "", "a");
-	InsertNode(root, 815, "", "a");
-	InsertNode(root, 850, "", "a");
-	InsertNode(root, 900, "", "a");
-	InsertNode(root, 950, "", "a");
-
+	InsertNode(root, 525, "", "It must be a lemon!\n");
+	InsertNode(root, 575, "", "It must be a lime!\n");
+	InsertNode(root, 630, "", "It's grapefruit!\n");
+	InsertNode(root, 650, "", "It's oranges isn't it!\n");
+	InsertNode(root, 700, "", "It's a banana!\n");
+	InsertNode(root, 735, "", "You must be thinking of apples!\n");
+	InsertNode(root, 775, "", "It's raspberries!\n");
+	InsertNode(root, 815, "", "It's blackberries!\n");
+	InsertNode(root, 850, "", "It must be olives!\n");
+	InsertNode(root, 885, "", "It's a pumpkin!\n");
+	InsertNode(root, 915, "", "It's a watermelon!\n");
+	InsertNode(root, 950, "", "You must be thinking of grapes!\n");
 
 	return root;
 }
