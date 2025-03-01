@@ -20,4 +20,6 @@ struct node
 	node* right;
 };
 
+void InsertNode(node* root, int dataval, char* question, char* item);
+
 #endif
