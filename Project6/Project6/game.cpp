@@ -10,61 +10,127 @@
 */
 
 #include <iostream>
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
+#include <climits>
 
 using namespace std;
 
 #define LEADERBOARD_FILE "guessing_leaderboard.bin"
 
-class Player
-{
+class Player {
 public:
-		Player() {}
-		Player(string name, int guesses) : name(name), guesses(guesses) {};
-		string getName() const { return name; }
-		int getGuesses() const { return guesses; }
+	Player() {};
+	Player(string name, int guesses) : name(name), guesses(guesses) {};
+
+	string getName() const { return name; }
+	int getGuesses() const { return guesses; }
+
+	void serialize(FILE* file) const {
+		// Write string length followed by characters
+		size_t len = name.size();
+		fwrite(&len, sizeof(size_t), 1, file);
+		fwrite(name.c_str(), sizeof(char), len, file);
+		fwrite(&guesses, sizeof(int), 1, file);
+	}
+
+	void deserialize(FILE* file) {
+		// Read string length
+		size_t len;
+		if (fread(&len, sizeof(size_t), 1, file) != 1) return;
+
+		// Read string data
+		char* buffer = new char[len + 1];
+		fread(buffer, sizeof(char), len, file);
+		buffer[len] = '\0';
+		name = buffer;
+		delete[] buffer;
+
+		// Read guesses
+		fread(&guesses, sizeof(int), 1, file);
+	}
+
 private:
 	string name;
-	int guesses;
+	int guesses = INT_MAX;
 };
 
-class LeaderBoard
-{
+class LeaderBoard {
 public:
-	LeaderBoard() {}
+	LeaderBoard() {
+		loadFromFile();
+	}
+
 	void InsertPlayer(Player player) {
-		for (int i = 0; i < NUM_LEADERS; i++) {
-			if (leaders[i] == NULL || leaders[i].getGuesses() > player.getGuesses())
-			{
-				leaders[i] = player;
+		// Find insertion position
+		int insertPos = NUM_LEADERS;
+		for (int i = 0; i < NUM_LEADERS; ++i) {
+			if (player.getGuesses() < leaders[i].getGuesses()) {
+				insertPos = i;
+				break;
 			}
 		}
-	};
 
-	const Player& getPlayer(int index) { return leaders[index]; }
+		if (insertPos >= NUM_LEADERS) return;
+
+		// Shift players down
+		for (int i = NUM_LEADERS - 1; i > insertPos; --i) {
+			leaders[i] = leaders[i - 1];
+		}
+
+		leaders[insertPos] = player;
+		saveToFile();
+	}
+
+	void display() const {
+		cout << "\n----------\nLeaderboard:" << endl;
+		for (int i = 0; i < NUM_LEADERS; ++i) {
+			if (leaders[i].getGuesses() == INT_MAX) continue;
+			cout << (i + 1) << ". " << leaders[i].getName()
+				<< " - " << leaders[i].getGuesses() << " guesses" << endl;
+		}
+		cout << "----------\n" << endl;
+	}
+
 private:
 	static const int NUM_LEADERS = 5;
-	Player leaders[NUM_LEADERS] = {Player()};
-};
+	Player leaders[NUM_LEADERS];
 
-// Checks cleans input for handling later. optionCount is the size of the array or number of options
-bool verifyInput(char* stringItems[], int optionCount, char* input) {
-	for (int i = 0; i < optionCount; i++) {
-		if (strcmp(stringItems[i], input) == 0) {
-			return true;
+	void loadFromFile() {
+		FILE* fp = fopen(LEADERBOARD_FILE, "rb");
+		if (!fp) return;
+
+		for (int i = 0; i < NUM_LEADERS; ++i) {
+			if (feof(fp)) break;
+			leaders[i].deserialize(fp);
 		}
+		fclose(fp);
 	}
-	return false;
-}
+
+	void saveToFile() {
+		FILE* fp = fopen(LEADERBOARD_FILE, "wb");
+		if (!fp) {
+			perror("Failed to save leaderboard");
+			return;
+		}
+
+		for (int i = 0; i < NUM_LEADERS; ++i) {
+			leaders[i].serialize(fp);
+		}
+		fclose(fp);
+	}
+};
 
 // Takes input and action for quit dialogue
 bool determineContinue() {
-	char inputChar[40];
-	cout << "Press 'q' to quit, press any key to continue:\n" << endl;
-	int charCt = scanf(" %39s", &inputChar);
-	inputChar[39] = '\0'; //redundancy
-	while (getchar() != '\n'); // clear buffer
-	// Returns true for anything that isn't "q"
-	return (strcmp(inputChar, "q") != 0);
+	char inputChar;
+	cout << "Press 'q' to quit, press any key to continue:" << endl;
+	cin >> inputChar;
+
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+	return (inputChar != 'q');
 }
 
 
@@ -74,130 +140,25 @@ void printPlayer(Player p1, int place)
 	cout << (place + 1) << ". " << p1.getName() << " made " << p1.getGuesses() << " guesses\n" << endl;
 }
 
-// Gets the leaderboard file
-FILE* openLeaderboardFile()
-{
-	FILE* fp = NULL;
-
-	fp = fopen(LEADERBOARD_FILE, "rb+");
-
-	if (fp == NULL)
-	{
-		// For first time execution
-		fp = fopen(LEADERBOARD_FILE, "wb+");
-		if (fp == NULL)
-		{
-			fprintf(stderr, "File creation failed.\n");
-			exit(1);
-		}
+FILE* openLeaderboardFile(const char* mode) {
+	FILE* fp = fopen(LEADERBOARD_FILE, mode);
+	if (!fp) {
+		perror("Leaderboard file error");
+		exit(EXIT_FAILURE);
 	}
-
 	return fp;
 }
 
-// get past game records into list for usage
-int readLeaderboardRecords(FILE* fp, Player* playerList, int recordCt)
-{
-	for (int recordIndex = 0; recordIndex < recordCt; recordIndex++)
-	{
-		fread(&playerList[recordIndex], sizeof(Player), 1, fp);
-	}
-}
-
-// stores top 5
-void writeLeaderboardRecords(FILE* fp, Player* playerList, int recordCt)
-{
-	fp = fopen(LEADERBOARD_FILE, "wb");
-
-	if (recordCt > 5)
-	{
-		recordCt = 5;
-	}
-
-	if (fp == NULL)
-	{
-		fprintf(stderr, "Failed to save leaderboard\n");
-		free(playerList);
-		exit(1);
-	}
-
-	for (int i = 0; i < recordCt; i++)
-	{
-		fwrite(&playerList[i], sizeof(Player), 1, fp);
-	}
-}
-
-// Displays results
-void displayLeaderboardResults(Player p1, Player* playerList, int* recordCt)
-{
-	// Add player to leaderboard
-	playerList[*recordCt] = p1;
-	(*recordCt)++;
-
-	// Display leaderboard
-	cout << "----------\nLeaderboard:\n" << endl;
-
-	// New leaderboard
-	if (*recordCt == 0)
-	{
-		printPlayer(p1, 1);
-	}
-	else
-	{
-		// Existing leaderboard
-		for (int i = 0; i < *recordCt; i++)
-		{
-			if (i == 5)
-			{
-				cout << "----- Knocked Out -----\n" << endl;
-			}
-
-			printPlayer(playerList[i], i);
-		}
-	}
-
-	// Ending
-	cout << "----------\n" << endl;
-}
-
 // Handles displaying leaderboard and storing information
-void finishingProcedures(Player p1)
-{
-	Player playerList[6];
-
-	if (playerList == NULL)
-	{
-		fprintf(stderr, "Memory allocation failed");
-		exit(1);
-	}
-
-	FILE* fp = openLeaderboardFile();
-
-	fseek(fp, 0, SEEK_END);
-
-	int fSize = ftell(fp);
-	int recordCt = fSize / sizeof(Player);
-	rewind(fp);
-	readLeaderboardRecords(fp, playerList, recordCt);
-
-	fclose(fp);
-
-	// Safety check to make sure current count is not above 5
-	if (recordCt > 6)
-	{
-		recordCt = 6;
-	}
-
-	displayLeaderboardResults(p1, playerList, &recordCt);
-	writeLeaderboardRecords(fp, playerList, recordCt);
-
-	fclose(fp);
-	free(playerList);
+void finishingProcedures(Player p1) {
+	LeaderBoard board;
+	board.InsertPlayer(p1);
+	board.display();
 }
 
 // Get player username
 string getName() {
-	cout << "Enter your name: \n" << endl;
+	cout << "Enter your name: " << endl;
 	string name;
 	cin >> name;
 	cin.clear(); //clear buffer
@@ -212,7 +173,7 @@ int GetGuess()
 	int guess;
 	while (true)
 	{
-		cout << "Guess a value between 10 and 100: ";
+		cout << "Guess a value between 10 and 100: " << endl;
 
 		if (cin >> guess)
 		{
@@ -238,10 +199,9 @@ int PlayGuessingGame()
 	int guessCt = 0;
 
 	// Generate a random number between 10 and 100 and find its square root
-	srand((unsigned int)time(NULL)); // Seed rand with current time
 	int numberToGuess = rand() % 91 + 10;
 	double squareRoot = sqrt(numberToGuess);
-	cout << squareRoot  << " is the square root of what number?\n" << endl;
+	cout << squareRoot  << " is the square root of what number?" << endl;
 	bool done = false;
 	while (!done)
 	{
@@ -254,7 +214,7 @@ int PlayGuessingGame()
 		else
 			done = true;
 	}
-	cout << "You got it, baby!\n" << endl;
+	cout << "You got it, baby!" << endl;
 
 	return guessCt;
 }
@@ -273,8 +233,9 @@ void playRound()
 
 int main()
 {
+	srand(time(NULL)); // Seed rand with current time
 	bool continueGame = true;
-	cout << "Welcome to the Guessing Game!\n" << endl;
+	cout << "Welcome to the Guessing Game!" << endl;
 
 	// Initial quit question as seen in example before going into the loop
 	continueGame = determineContinue();
@@ -284,6 +245,6 @@ int main()
 		continueGame = determineContinue();
 	}
 
-	cout << "Goodbye!\n" << endl;
+	cout << "Goodbye!" << endl;
 	return 0;
 }
