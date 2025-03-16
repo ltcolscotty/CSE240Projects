@@ -239,11 +239,10 @@ void playRound()
 
 int main()
 {
-	srand(time(NULL)); // Seed rand with current time
+	srand(time(NULL));
 	bool continueGame = true;
 	cout << "Welcome to the Guessing Game!" << endl;
 
-	// Initial quit question as seen in example before going into the loop
 	continueGame = determineContinue();
 
 	while (continueGame) {
