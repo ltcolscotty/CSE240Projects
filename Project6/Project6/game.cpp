@@ -27,14 +27,15 @@ public:
 	string getName() const { return name; }
 	int getGuesses() const { return guesses; }
 
+	// into binary format
 	void serialize(FILE* file) const {
-		// Write string length followed by characters
 		size_t len = name.size();
 		fwrite(&len, sizeof(size_t), 1, file);
 		fwrite(name.c_str(), sizeof(char), len, file);
 		fwrite(&guesses, sizeof(int), 1, file);
 	}
 
+	// out of binary format
 	void deserialize(FILE* file) {
 		// Read string length
 		size_t len;
@@ -47,12 +48,12 @@ public:
 		name = buffer;
 		delete[] buffer;
 
-		// Read guesses
 		fread(&guesses, sizeof(int), 1, file);
 	}
 
 private:
 	string name;
+	// set to INT_MAX to make guess ordering easier
 	int guesses = INT_MAX;
 };
 
@@ -62,6 +63,7 @@ public:
 		loadFromFile();
 	}
 
+	// insert in order
 	void InsertPlayer(Player player) {
 		// Find insertion position
 		int insertPos = NUM_LEADERS;
@@ -83,6 +85,7 @@ public:
 		saveToFile();
 	}
 
+	// display leaderboard
 	void display() const {
 		cout << "\n----------\nLeaderboard:" << endl;
 		for (int i = 0; i < NUM_LEADERS; ++i) {
@@ -96,6 +99,8 @@ public:
 private:
 	static const int NUM_LEADERS = 5;
 	Player leaders[NUM_LEADERS];
+
+	// --- File IO stuff ---
 
 	void loadFromFile() {
 		FILE* fp = fopen(LEADERBOARD_FILE, "rb");
@@ -140,6 +145,7 @@ void printPlayer(Player p1, int place)
 	cout << (place + 1) << ". " << p1.getName() << " made " << p1.getGuesses() << " guesses\n" << endl;
 }
 
+// Read file
 FILE* openLeaderboardFile(const char* mode) {
 	FILE* fp = fopen(LEADERBOARD_FILE, mode);
 	if (!fp) {
