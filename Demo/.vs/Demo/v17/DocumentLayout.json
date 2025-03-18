@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Demo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4CA4F2F7-0004-44C1-9E25-78CE18481EAE}|Demo\\Demo.vcxproj|C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Demo\\Demo\\demo.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{4CA4F2F7-0004-44C1-9E25-78CE18481EAE}|Demo\\Demo.vcxproj|solutionrelative:Demo\\demo.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{4CA4F2F7-0004-44C1-9E25-78CE18481EAE}|Demo\\Demo.vcxproj|C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Demo\\Demo\\HealthPlan.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4CA4F2F7-0004-44C1-9E25-78CE18481EAE}|Demo\\Demo.vcxproj|solutionrelative:Demo\\HealthPlan.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CA4F2F7-0004-44C1-9E25-78CE18481EAE}|Demo\\Demo.vcxproj|C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Demo\\Demo\\SalesPerson.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4CA4F2F7-0004-44C1-9E25-78CE18481EAE}|Demo\\Demo.vcxproj|solutionrelative:Demo\\SalesPerson.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CA4F2F7-0004-44C1-9E25-78CE18481EAE}|Demo\\Demo.vcxproj|C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Demo\\Demo\\Employee.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4CA4F2F7-0004-44C1-9E25-78CE18481EAE}|Demo\\Demo.vcxproj|solutionrelative:Demo\\Employee.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CA4F2F7-0004-44C1-9E25-78CE18481EAE}|Demo\\Demo.vcxproj|C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Demo\\Demo\\demo.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4CA4F2F7-0004-44C1-9E25-78CE18481EAE}|Demo\\Demo.vcxproj|solutionrelative:Demo\\demo.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4CA4F2F7-0004-44C1-9E25-78CE18481EAE}|Demo\\Demo.vcxproj|C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Demo\\Demo\\Employee.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4CA4F2F7-0004-44C1-9E25-78CE18481EAE}|Demo\\Demo.vcxproj|solutionrelative:Demo\\Employee.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +30,75 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SalesPerson.hpp",
+              "DocumentMoniker": "C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Demo\\Demo\\SalesPerson.hpp",
+              "RelativeDocumentMoniker": "Demo\\SalesPerson.hpp",
+              "ToolTip": "C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Demo\\Demo\\SalesPerson.hpp",
+              "RelativeToolTip": "Demo\\SalesPerson.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-18T21:18:44.201Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "demo.c",
-              "DocumentMoniker": "C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Demo\\Demo\\demo.c",
-              "RelativeDocumentMoniker": "Demo\\demo.c",
-              "ToolTip": "C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Demo\\Demo\\demo.c",
-              "RelativeToolTip": "Demo\\demo.c",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-01-30T20:56:06.031Z",
+              "Title": "HealthPlan.hpp",
+              "DocumentMoniker": "C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Demo\\Demo\\HealthPlan.hpp",
+              "RelativeDocumentMoniker": "Demo\\HealthPlan.hpp",
+              "ToolTip": "C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Demo\\Demo\\HealthPlan.hpp",
+              "RelativeToolTip": "Demo\\HealthPlan.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-18T21:12:40.343Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Employee.cpp",
+              "DocumentMoniker": "C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Demo\\Demo\\Employee.cpp",
+              "RelativeDocumentMoniker": "Demo\\Employee.cpp",
+              "ToolTip": "C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Demo\\Demo\\Employee.cpp",
+              "RelativeToolTip": "Demo\\Employee.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-18T20:58:46.433Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Employee.hpp",
+              "DocumentMoniker": "C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Demo\\Demo\\Employee.hpp",
+              "RelativeDocumentMoniker": "Demo\\Employee.hpp",
+              "ToolTip": "C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Demo\\Demo\\Employee.hpp",
+              "RelativeToolTip": "Demo\\Employee.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-18T20:55:03.525Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "demo.cpp",
+              "DocumentMoniker": "C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Demo\\Demo\\demo.cpp",
+              "RelativeDocumentMoniker": "Demo\\demo.cpp",
+              "ToolTip": "C:\\Users\\aidan\\OneDrive\\Desktop\\cs-stuff\\CSE240Projects\\Demo\\Demo\\demo.cpp",
+              "RelativeToolTip": "Demo\\demo.cpp",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABoAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-18T20:32:51.619Z",
               "EditorCaption": ""
             }
           ]
