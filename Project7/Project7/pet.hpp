@@ -12,6 +12,7 @@ public:
 	virtual float CalculateFee() { return GetLicensingRate() * weight; }
 protected:
 	virtual float GetLicensingRate() const = 0;
+private:
 	std::string name;
 	int weight;
 };
