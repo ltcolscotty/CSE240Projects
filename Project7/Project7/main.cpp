@@ -8,6 +8,9 @@
 
 using namespace std;
 
+float Dog::LicensingRate=2;
+float Cat::LicensingRate=1.5;
+
 int main() 
 {
 	Dog* d1 = new Dog("Bob", 65);

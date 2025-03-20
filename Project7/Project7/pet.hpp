@@ -9,10 +9,8 @@ public:
 	Pet(std::string n, int w) : name(n), weight(w) {}
 	virtual ~Pet() { std::cout << "Destructor\n"; }
 	std::string GetName() { return name; }
-	virtual float CalculateFee() { return GetLicensingRate() * weight; }
+	virtual float CalculateFee() = 0;
 protected:
-	virtual float GetLicensingRate() const = 0;
-private:
 	std::string name;
 	int weight;
 };
