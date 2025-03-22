@@ -5,7 +5,7 @@
 
 class Pet {
 public:
-	Pet() : Pet("", 0) {}
+	Pet();
 	Pet(std::string n, int w) : name(n), weight(w) {}
 	virtual ~Pet() { std::cout << "Destructor\n"; }
 	std::string GetName() { return name; }
