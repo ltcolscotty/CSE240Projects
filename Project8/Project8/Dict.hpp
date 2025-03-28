@@ -26,8 +26,8 @@ V& Dict<K, V>::operator[](K key)
 {
 	if (!bt.contains(key))
 		bt.insert(key, V());
-
-	return bt.find(key);
+	else
+		return bt.find(key);
 }
 
 #endif // !Dict_hpp
