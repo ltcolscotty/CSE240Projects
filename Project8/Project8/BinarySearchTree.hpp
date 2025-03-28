@@ -86,6 +86,17 @@ private:
 template <typename K, typename V>
 void BinarySearchTree<K, V>::insert(K key, V value)
 {
+	Node<K, V>* n = Node<K, V>(key, value);
+
+	// Empty case
+	if (head == nullptr)
+	{
+		head = n;
+		return head;
+	}
+
+	if ()
+
 
 }
 

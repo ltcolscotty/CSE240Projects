@@ -18,7 +18,7 @@ private:
 template <typename K, typename V>
 void Dict<K, V>::add(K key, V value)
 {
-
+	bt.insert(key, V())
 }
 
 template <typename K, typename V>
