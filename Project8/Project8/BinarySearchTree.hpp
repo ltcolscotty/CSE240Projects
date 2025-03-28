@@ -87,7 +87,6 @@ bool BinarySearchTree<K, V>::contains(const K& key)
 	return false;
 }
 
-
 // Implementation assumes contains has been run before
 template <typename K, typename V>
 V BinarySearchTree<K, V>::find(const K& key)
