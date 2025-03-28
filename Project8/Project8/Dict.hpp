@@ -25,9 +25,11 @@ template <typename K, typename V>
 V& Dict<K, V>::operator[](K key)
 {
 	if (!bt.contains(key))
+	{
 		bt.insert(key, V());
-	else
-		return bt.find(key);
+	}
+	
+	return bt.find(key);
 }
 
 #endif // !Dict_hpp
