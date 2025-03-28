@@ -28,7 +28,7 @@ public:
 
 	void insert(K key, V value);
 	bool contains(const K& key);
-	V find(const K& key);
+	V& find(const K& key);
 private:
 	Node<K, V>* root;
 };
@@ -89,7 +89,7 @@ bool BinarySearchTree<K, V>::contains(const K& key)
 
 // Implementation assumes contains has been run before
 template <typename K, typename V>
-V BinarySearchTree<K, V>::find(const K& key)
+V& BinarySearchTree<K, V>::find(const K& key)
 {
 	Node<K, V>* current = root;
     

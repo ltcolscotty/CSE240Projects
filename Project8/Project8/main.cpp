@@ -5,7 +5,6 @@
 * 3/27/2025
 * 
 * Demonstration of a dictionary class with an underlying BST as its primary storage mechanism.
-* I will be experimenting with an AVL BST just for fun
 */
 
 
@@ -21,13 +20,12 @@ int main()
 	phone_directory.add("Tom", 4236);
 	phone_directory.add("Pat", 4237);
 
-
 	cout << "Tom " << "Ext.: " << phone_directory["Tom"] << endl;
 	cout << "Pat " << "Ext.: " << phone_directory["Pat"] << endl;
 
 	Dict<int, string> id_numbers;
 	id_numbers.add(102304, "Tom");
-	id_numbers.add(102305, "pat");
+	id_numbers.add(102305, "Pat");
 
 	cout << id_numbers[102304] << endl;
 	cout << id_numbers[102305] << endl;
