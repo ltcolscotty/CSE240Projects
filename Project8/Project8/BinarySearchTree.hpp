@@ -101,8 +101,6 @@ V& BinarySearchTree<K, V>::find(const K& key)
             return current->data;
         }
     }
-
-	return nullptr;
 }
 
 #endif
