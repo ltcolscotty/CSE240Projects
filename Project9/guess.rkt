@@ -1,22 +1,17 @@
 (#%require (lib "27.ss" "srfi"))
 (random-source-randomize! default-random-source)
 
-
 (define get_guess
   (lambda (target guesses)
     (display "Enter guess: " )
      (let ((guess (read)))
     (cond
       ((= guess target)
-       (display "Correct! You made ")
-       (display guesses)
-       (display " guesses..." )
+       (display (string-append "Correct! You made " (number->string guesses) " guesses..."))
        (newline)
        (display "Please enter your name: ")
        (let ((name (read)))
-         (display "Good game, ")
-         (display name)
-         (display "!")))
+         (display (string-append "Good game, " name "!"))))
       ((< guess target)
        (display "Higher...")
        (get_guess target (+ guesses 1)))
