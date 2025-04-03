@@ -1,6 +1,11 @@
 (#%require (lib "27.ss" "srfi"))
 (random-source-randomize! default-random-source)
 
+(define congratulate
+  (lambda (name)
+    (display (string-append "Good game, " name "!"))
+  ))
+
 (define get_guess
   (lambda (target guesses)
     (display "Enter guess: " )
@@ -11,7 +16,7 @@
        (newline)
        (display "Please enter your name: ")
        (let ((name (read)))
-         (display (string-append "Good game, " name "!"))))
+         (congratulate (symbol->string name))))
       ((< guess target)
        (display "Higher...")
        (get_guess target (+ guesses 1)))
