@@ -1,0 +1,19 @@
+(define factoral1
+  (lambda (n)
+    (if (= n 1)
+    1
+    (* n (factorial1 (- n 1))))))
+
+(newline)
+
+(#%require racket/trace)
+
+(define factorial2
+  (lambda (n result)
+    (if (= n 1)
+        result
+        (factorial2 (- n 1) (* n result)))))
+
+(trace factorial2)
+
+(factorial2 6 1)
