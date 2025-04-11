@@ -1,0 +1,25 @@
+(#%require (lib "27.ss" "srfi"))
+(random-source-randomize! default-random-source)
+(define print_list
+  (lambda (L)
+    ...))
+
+(define players '())
+
+(define play_guess
+  (lambda (answer num-of-guesses)
+    ))
+
+(if (equal? answer guess)
+    (begin
+      ...
+      (list name num-of-guesses))
+    (begin
+      ...))
+    
+; Generate random number and play the game
+(define play
+  (lambda (players)
+    ...))
+(play (append players (play_guess (+ (random-integer 9) 1) 1)))))))
+(play players)
