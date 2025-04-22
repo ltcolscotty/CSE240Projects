@@ -22,3 +22,7 @@ last(X,[X]).
 last(X,[_|T]) :- last(X, T).
 
 addhead(List, Element, [Element | List]).
+
+foo( _, [], []).
+foo( R, [R|T], T).
+foo( R, [H|T], [H|T2]) :-  H \= R, foo( R, T, T2).
