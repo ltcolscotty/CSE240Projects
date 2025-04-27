@@ -1,9 +1,16 @@
 split(L, P1, P2) :-
 
 /*guh think about this later*/
-merge([A1|R1], [A2|R2], Merged) :-
-    A1 >= A2,
-    [A]
+merge(L1,[],L1).
+merge([],L2,L2).
+
+merge([A|As], [B|Bs], [A|Merged]) :-
+    A =< B,
+    merge(As, [B|Bs], Merged).
+
+merge([A|As], [B|Bs], [B|Merged]) :-
+    B < A,
+    merge([A|As], Bs, Merged).
 
 /*base cases*/
 mergeSort([], []).
